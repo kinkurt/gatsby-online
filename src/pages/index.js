@@ -1,29 +1,74 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-
+import { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Article from "../components/article"
+import Stories from "../components/stories"
 
-const IndexPage = () => (
-  <Layout>
+import { createApi } from "unsplash-js";
+
+
+
+const IndexPage = () => {
+
+  const [data, setPhotosResponse] = useState();
+  const [storiesPhoto, setStoriesPhoto] = useState();
+  const [searchItem, setSearchItem] = useState(``);
+
+  const api = createApi({
+    accessKey: "59e9SeYvr_uCTTjQnAudmY9QcJTOdJPvUSW_rSBNXm0"
+  });
+
+  const searchArray = ["dog","cat","explore","gaming","city"];
+  const randomNumber = Math.floor(Math.random() * 5);
+  
+
+  const fetchImage = async() =>{
+    if(searchItem.length <= 0){
+        await api.search
+        .getPhotos({query:searchArray[randomNumber],orientation: "landscape"})
+        .then(result => {
+          setPhotosResponse(result)
+        })
+        .catch(() => {
+          console.log("something went wrong!");
+        });
+    }
+    else{
+        await api.search
+        .getPhotos({query:searchItem,orientation: "landscape"})
+        .then(result => {
+          setPhotosResponse(result)
+        })
+        .catch(() => {
+          console.log("something went wrong!");
+        });
+    }
+}
+
+useEffect(()=>{
+   api.search
+        .getPhotos({query:`visuals`,orientation: "portrait",perPage:"5"})
+        .then(result => {
+          setStoriesPhoto(result)
+        })
+        .catch(() => {
+          console.log("something went wrong!");
+        });
+},[])
+
+useEffect(()=>{
+  fetchImage();
+},[searchItem]);
+
+return(
+  <Layout searchItem={searchItem} setSearchItem={setSearchItem}>
     <Seo title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={["auto", "webp", "avif"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    </p>
+    <Stories storiesPhoto={storiesPhoto}/>
+    <Article data={data} searchItem={searchItem} setPhotosResponse={setPhotosResponse} />
+    
   </Layout>
 )
+}
 
 export default IndexPage
