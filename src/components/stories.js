@@ -115,7 +115,7 @@ const Stories = ({storiesPhoto}) => {
 
       const StoriesShow = () => {
         if (storiesPhoto == null) {
-          return <div>...</div>;
+          return <div className="animate-spin">Stories</div>;
         } 
         else if (storiesPhoto.errors) {
           return (

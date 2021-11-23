@@ -100,7 +100,7 @@ const Article = ({data, searchItem}) => {
       const Body = () => {
         
         if (data == null) {
-            return <div>Loading...</div>;
+            return <div className="animate-spin">Loading...</div>;
           } 
           else if (data.errors) {
             return (
