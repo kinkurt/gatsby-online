@@ -12,7 +12,7 @@ const Header = ({ siteTitle,searchItem,setSearchItem  }) => {
 
   return(
   <header
-    className="border-b border-gray-200 flex w-full sticky top-0"
+    className="border-b border-gray-200 flex w-full sticky top-0 z-10"
     style={{
       background: `white`,
       marginBottom: `1.45rem`,
