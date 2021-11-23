@@ -130,7 +130,7 @@ const Stories = ({storiesPhoto}) => {
         }
          else {
         return (
-          <div className="container mx-auto max-w-xs sm:max-w-screen-sm h-32 bg-white border border-gray-200 rounded flex justify-center">
+          <div className="container mx-auto  max-w-xs sm:max-w-screen-sm h-32 bg-white border border-gray-200 rounded flex justify-center">
               <div className="flex flex-row items-center gap-4">
               {storiesPhoto.response.results.map(photo => (
                 <div key={photo.id} className="">

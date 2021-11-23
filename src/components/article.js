@@ -38,7 +38,7 @@ const Article = ({data, searchItem}) => {
       
         return (
           <Fragment >
-            <div className="border border-gray-200 rounded bg-white max-w-xs sm:max-w-screen-sm"> 
+            <div className="border border-gray-200 rounded bg-white max-w-xs sm:max-w-screen-sm "> 
 
                 <div className="h-16 flex flex-row items-center p-2 gap-2">
                   <img className="rounded-full h-10 w-10 " src={urls.regular} alt={urls.regular}/>
@@ -117,9 +117,9 @@ const Article = ({data, searchItem}) => {
            else {
             return (
               <div >
-                <div className="flex flex-col justify-center items-center mx-auto">
+                <div className="flex flex-col justify-center items-center mx-auto ">
                   {data.response.results.map(photo => (
-                    <div key={photo.id} className="p-3">
+                    <div key={photo.id} className="pt-3 pb-3">
                       <PhotoComp  photo={photo} />
                     </div>
                   ))}
