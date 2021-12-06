@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Fragment, useState,useEffect } from "react";
+import { Fragment, useState } from "react";
 import "tailwindcss/tailwind.css";
 import Logo from "../images/instagramLogoClear.png";
 import { Dialog, Transition } from '@headlessui/react'
@@ -87,7 +87,7 @@ const Stories = ({storiesPhoto}) => {
                               {photo.user.name}
                             </a>
                           </div>
-                            <img className="max-w-56 md:max-w-screen-sm" src={photo.urls.regular} />
+                            <img className="max-w-56 md:max-w-screen-sm" src={photo.urls.regular} alt={photo.urls.regular}/>
                         </div>
                       </div>
       
