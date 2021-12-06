@@ -16,7 +16,7 @@ const IndexPage = () => {
   const [searchItem, setSearchItem] = useState(``);
 
   const api = createApi({
-    accessKey: "59e9SeYvr_uCTTjQnAudmY9QcJTOdJPvUSW_rSBNXm0"
+    accessKey: process.env.API_KEY
   });
 
   const searchArray = ["dog","cat","explore","gaming","city"];
